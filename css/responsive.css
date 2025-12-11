@@ -1,0 +1,195 @@
+/* Responsive Design for US-SPURS Website */
+/* Mobile-first approach following USWDS principles */
+
+/* Tablet Styles (768px and up) */
+@media screen and (max-width: 1023px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        order: -1;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.125rem;
+    }
+}
+
+/* Mobile Styles (767px and below) */
+@media screen and (max-width: 767px) {
+    /* Banner */
+    .usa-banner__text--desktop {
+        display: none;
+    }
+    
+    .usa-banner__text--mobile {
+        display: inline;
+    }
+    
+    /* Header */
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .site-nav {
+        display: none;
+    }
+    
+    .site-nav.mobile-open {
+        display: block;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+    }
+    
+    .nav-link {
+        border-bottom: 1px solid var(--primary-dark-blue);
+    }
+    
+    /* Hero */
+    .hero {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    /* Cards */
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    /* Page Header */
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    /* Content spacing adjustments */
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .quick-links,
+    .updates,
+    .page-content {
+        padding: var(--spacing-lg) 0;
+    }
+}
+
+/* Small Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .cta-button {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+    
+    .update-item {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Large Desktop (1400px and up) */
+@media screen and (min-width: 1400px) {
+    :root {
+        --container-max-width: 1400px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .skip-link,
+    .mobile-menu-toggle,
+    .site-nav,
+    .cta-button {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+    
+    a {
+        text-decoration: underline;
+        color: #000;
+    }
+    
+    .hero {
+        background: none;
+        color: #000;
+    }
+    
+    .site-footer {
+        background: none;
+        color: #000;
+        border-top: 2px solid #000;
+    }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-blue: #0000ff;
+        --accent-red: #ff0000;
+        --black: #000000;
+        --white: #ffffff;
+    }
+    
+    .card {
+        border-width: 2px;
+    }
+    
+    .nav-link {
+        border: 1px solid transparent;
+    }
+    
+    .nav-link:focus {
+        border: 2px solid #fff;
+    }
+}
