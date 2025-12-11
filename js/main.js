@@ -28,22 +28,27 @@
     // External link detection and warning (for security)
     const links = document.querySelectorAll('a[href^="http"]');
     links.forEach(function(link) {
-        const linkHost = new URL(link.href).hostname;
-        const currentHost = window.location.hostname;
-        
-        if (linkHost !== currentHost && !link.hasAttribute('aria-label')) {
-            const linkText = link.textContent || link.innerText;
-            link.setAttribute('aria-label', linkText + ' (external link)');
-            link.setAttribute('rel', 'noopener noreferrer');
+        try {
+            const linkHost = new URL(link.href).hostname;
+            const currentHost = window.location.hostname;
             
-            // Add external link icon (using text for now)
-            if (!link.querySelector('.external-icon')) {
-                const icon = document.createElement('span');
-                icon.className = 'external-icon';
-                icon.setAttribute('aria-hidden', 'true');
-                icon.textContent = ' ↗';
-                link.appendChild(icon);
+            if (linkHost !== currentHost && !link.hasAttribute('aria-label')) {
+                const linkText = link.textContent || link.innerText;
+                link.setAttribute('aria-label', linkText + ' (external link)');
+                link.setAttribute('rel', 'noopener noreferrer');
+                
+                // Add external link icon (using text for now)
+                if (!link.querySelector('.external-icon')) {
+                    const icon = document.createElement('span');
+                    icon.className = 'external-icon';
+                    icon.setAttribute('aria-hidden', 'true');
+                    icon.textContent = ' ↗';
+                    link.appendChild(icon);
+                }
             }
+        } catch (e) {
+            // Invalid URL, skip processing
+            console.warn('Invalid URL detected:', link.href);
         }
     });
     

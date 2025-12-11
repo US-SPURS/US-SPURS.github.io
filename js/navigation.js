@@ -31,11 +31,12 @@
         });
         
         // Close mobile menu on window resize if viewport becomes larger
+        const MOBILE_BREAKPOINT = 767; // Should match CSS responsive breakpoint
         let resizeTimer;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function() {
-                if (window.innerWidth > 767) {
+                if (window.innerWidth > MOBILE_BREAKPOINT) {
                     siteNav.classList.remove('mobile-open');
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 }

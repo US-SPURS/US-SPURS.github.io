@@ -83,7 +83,7 @@ jobs:
       - name: Scan for sensitive data
         run: |
           echo "Checking for sensitive patterns..."
-          if grep -rE "(password|api[_-]?key|secret|token)" --include="*.html" --include="*.js" .; then
+          if grep -rEi "(password|api[_-]?key|secret|token)" --include="*.html" --include="*.js" .; then
             echo "⚠ Warning: Potential sensitive data found - please review"
             exit 1
           else

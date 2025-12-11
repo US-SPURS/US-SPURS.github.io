@@ -14,6 +14,7 @@
     --primary-dark-blue: #1a4480;
     --primary-navy: #162e51;
     --accent-red: #e52207;
+    --accent-red-dark: #b91d0c;
     --white: #ffffff;
     --gray-lightest: #f0f0f0;
     --gray-light: #dcdee0;
@@ -236,7 +237,7 @@ body {
 
 .cta-button:hover,
 .cta-button:focus {
-    background-color: #b91d0c;
+    background-color: var(--accent-red-dark);
     outline: 3px solid var(--white);
     outline-offset: 2px;
 }
