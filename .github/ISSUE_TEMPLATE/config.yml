@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security Vulnerability
+    url: mailto:security@spurs.gov
+    about: Report security vulnerabilities privately via email
+  - name: Accessibility Support
+    url: mailto:accessibility@spurs.gov
+    about: Contact our accessibility team for assistance
+  - name: General Support
+    url: /contact.html
+    about: Visit our contact page for general inquiries
