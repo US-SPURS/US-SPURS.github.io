@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Contact the US Department of SPURS - office locations, phone directory, and contact form">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+    <title>Contact - US Department of SPURS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="usa-banner" role="region" aria-label="Official government website">
+        <div class="usa-banner__content">
+            <p class="usa-banner__text">
+                <span class="usa-banner__text--desktop">An official website of the United States government</span>
+                <span class="usa-banner__text--mobile">Official US Government</span>
+            </p>
+        </div>
+    </div>
+
+    <header class="site-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>US-SPURS</h1>
+                    <p class="logo-subtitle">Department of Special Projects and Unified Response Services</p>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link active" aria-current="page">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+        </div>
+    </div>
+
+    <main id="main-content" role="main">
+        <section class="page-content">
+            <div class="container">
+                <div class="content-wrapper">
+                    <aside class="sidebar" role="complementary" aria-label="Section navigation">
+                        <h3>Contact Options</h3>
+                        <ul>
+                            <li><a href="#contact-form">Contact Form</a></li>
+                            <li><a href="#office-locations">Office Locations</a></li>
+                            <li><a href="#phone-directory">Phone Directory</a></li>
+                            <li><a href="#public-affairs">Public Affairs</a></li>
+                        </ul>
+                    </aside>
+                    
+                    <article class="main-content">
+                        <p class="lead">We welcome inquiries from the public, media, and partner organizations. Please use the appropriate contact method below for your needs.</p>
+
+                        <section id="contact-form" aria-labelledby="contact-form-heading">
+                            <h2 id="contact-form-heading">Contact Form</h2>
+                            <p><strong>Note:</strong> This is a demonstration form. In a production environment, this would connect to a secure backend system with CSRF protection, server-side validation, rate limiting, and secure data handling.</p>
+                            
+                            <form class="contact-form" method="post" action="#" aria-label="Contact form">
+                                <div class="form-group">
+                                    <label for="name">Full Name <span aria-label="required">*</span></label>
+                                    <input type="text" id="name" name="name" required aria-required="true">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address <span aria-label="required">*</span></label>
+                                    <input type="email" id="email" name="email" required aria-required="true">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Subject <span aria-label="required">*</span></label>
+                                    <select id="subject" name="subject" required aria-required="true">
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="services">Services Information</option>
+                                        <option value="emergency">Emergency Coordination</option>
+                                        <option value="media">Media Request</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Message <span aria-label="required">*</span></label>
+                                    <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="cta-button">Submit Inquiry</button>
+                            </form>
+                        </section>
+
+                        <section id="office-locations" aria-labelledby="office-locations-heading">
+                            <h2 id="office-locations-heading">Office Locations</h2>
+                            
+                            <h3>Headquarters</h3>
+                            <address>
+                                US Department of SPURS<br>
+                                1234 Constitution Avenue NW<br>
+                                Washington, DC 20001<br>
+                                <a href="tel:+12025551000">Phone: (202) 555-1000</a>
+                            </address>
+                            
+                            <h3>Regional Offices</h3>
+                            <p>US-SPURS maintains regional offices across the United States to better serve local communities and coordinate with state and local partners.</p>
+                            <ul>
+                                <li><strong>Northeast Region:</strong> Boston, MA</li>
+                                <li><strong>Southeast Region:</strong> Atlanta, GA</li>
+                                <li><strong>Midwest Region:</strong> Chicago, IL</li>
+                                <li><strong>Southwest Region:</strong> Dallas, TX</li>
+                                <li><strong>Western Region:</strong> San Francisco, CA</li>
+                            </ul>
+                        </section>
+
+                        <section id="phone-directory" aria-labelledby="phone-directory-heading">
+                            <h2 id="phone-directory-heading">Phone Directory</h2>
+                            <ul>
+                                <li><strong>Main Line:</strong> <a href="tel:+12025551000">(202) 555-1000</a></li>
+                                <li><strong>Public Information:</strong> <a href="tel:+12025551100">(202) 555-1100</a></li>
+                                <li><strong>Emergency Coordination:</strong> <a href="tel:+12025551911">(202) 555-1911</a></li>
+                                <li><strong>Media Relations:</strong> <a href="tel:+12025551200">(202) 555-1200</a></li>
+                                <li><strong>Freedom of Information Act (FOIA):</strong> <a href="tel:+12025551300">(202) 555-1300</a></li>
+                            </ul>
+                            
+                            <p><strong>Hours of Operation:</strong><br>
+                            Monday - Friday: 8:00 AM - 6:00 PM ET<br>
+                            Emergency Coordination: 24/7</p>
+                        </section>
+
+                        <section id="public-affairs" aria-labelledby="public-affairs-heading">
+                            <h2 id="public-affairs-heading">Public Affairs</h2>
+                            <p>For media inquiries, interview requests, and press credentials:</p>
+                            
+                            <address>
+                                Office of Public Affairs<br>
+                                US Department of SPURS<br>
+                                Email: <a href="mailto:press@spurs.gov">press@spurs.gov</a><br>
+                                Phone: <a href="tel:+12025551200">(202) 555-1200</a>
+                            </address>
+                            
+                            <h3>Social Media</h3>
+                            <p>Stay connected with US-SPURS through our official channels:</p>
+                            <ul>
+                                <li>Twitter: @USSPURS (example)</li>
+                                <li>Facebook: US Department of SPURS (example)</li>
+                                <li>LinkedIn: US-SPURS (example)</li>
+                            </ul>
+                            
+                            <p><strong>Note:</strong> Official social media accounts will be verified with government badges.</p>
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>US Department of SPURS</h3>
+                    <p>Special Projects and Unified Response Services</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 United States Department of SPURS. An official website of the U.S. Government.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
