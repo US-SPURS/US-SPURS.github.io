@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 const routes = [
@@ -8,11 +9,17 @@ const routes = [
 
 test.describe('public site', () => {
   for (const route of routes) {
-    test(`${route} renders successfully`, async ({ page }) => {
+    test(`${route} renders and passes automated accessibility checks`, async ({ page }) => {
       const response = await page.goto(route);
       expect(response?.ok()).toBeTruthy();
       await expect(page.locator('main')).toBeVisible();
       await expect(page.locator('footer')).toBeVisible();
+
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+
+      expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
     });
   }
 
