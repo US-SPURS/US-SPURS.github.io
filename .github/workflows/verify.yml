@@ -1,0 +1,74 @@
+name: Experience verification
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ['feature/**']
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Serve static export
+        run: |
+          npx --yes serve out -l 4173 >/tmp/spurs-serve.log 2>&1 &
+          sleep 3
+      - name: Browser smoke tests
+        run: npm run test:e2e
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - name: Validate generated internal links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --include-fragments './out/**/*.html'
+          fail: true
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - name: Serve static export
+        run: |
+          npx --yes serve out -l 4173 >/tmp/spurs-serve.log 2>&1 &
+          sleep 3
+      - name: Audit homepage
+        run: |
+          npx --yes lighthouse http://127.0.0.1:4173/ \
+            --chrome-flags='--headless --no-sandbox' \
+            --only-categories=performance,accessibility,best-practices,seo \
+            --output=json --output-path=/tmp/lighthouse.json
+          node - <<'NODE'
+          const r=require('/tmp/lighthouse.json').categories;
+          const minimum={performance:.80,accessibility:.95,'best-practices':.90,seo:.90};
+          let failed=false;
+          for (const [key,min] of Object.entries(minimum)) {
+            const score=r[key].score;
+            console.log(`${key}: ${Math.round(score*100)} (minimum ${Math.round(min*100)})`);
+            if (score < min) failed=true;
+          }
+          if (failed) process.exit(1);
+          NODE
