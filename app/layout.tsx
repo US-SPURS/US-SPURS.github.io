@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './interior.css';
+import './experience.css';
 import { Footer, GovernmentBanner, Header } from '@/components/site-shell';
 import { site } from '@/content/site';
 
@@ -17,7 +18,13 @@ export const metadata: Metadata = {
     description: site.mission,
     url: 'https://spurs.gov',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: site.name,
+    description: site.mission,
+  },
   robots: { index: true, follow: true },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

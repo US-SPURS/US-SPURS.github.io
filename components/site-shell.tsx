@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MobileNav } from '@/components/mobile-nav';
 import { site } from '@/content/site';
 
 export function GovernmentBanner() {
@@ -24,13 +25,14 @@ export function Header() {
             <small>Special Projects & Unified Response Services</small>
           </span>
         </Link>
-        <nav aria-label="Primary navigation">
+        <nav className="desktop-nav" aria-label="Primary navigation">
           <ul className="nav-list">
             {site.navigation.map((item) => (
               <li key={item.href}><Link href={item.href}>{item.label}</Link></li>
             ))}
           </ul>
         </nav>
+        <MobileNav />
       </div>
     </header>
   );
@@ -48,6 +50,9 @@ export function Footer() {
         <div>
           <h3>Public resources</h3>
           <ul>
+            <li><Link href="/news/">News</Link></li>
+            <li><Link href="/roadmap/">Roadmap</Link></li>
+            <li><Link href="/status/">Status</Link></li>
             <li><Link href="/accessibility/">Accessibility</Link></li>
             <li><Link href="/privacy/">Privacy</Link></li>
             <li><Link href="/security/">Security</Link></li>

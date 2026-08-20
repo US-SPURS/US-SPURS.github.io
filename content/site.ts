@@ -15,6 +15,12 @@ export const site = {
     { label: 'Security', href: '/security/' },
     { label: 'Open Government', href: '/open-government/' },
   ],
+  utilityNavigation: [
+    { label: 'News', href: '/news/' },
+    { label: 'Roadmap', href: '/roadmap/' },
+    { label: 'Status', href: '/status/' },
+    { label: 'Contact', href: '/contact/' },
+  ],
   capabilities: [
     ['Special Projects', 'Long-horizon, cross-domain initiatives requiring sustained coordination and disciplined delivery.'],
     ['Unified Response', 'Rapid, integrated response architecture designed around shared situational awareness and interoperable execution.'],
@@ -24,3 +30,20 @@ export const site = {
     ['Standards & Interoperability', 'Open specifications, shared schemas, policy-aware interfaces, and reusable cross-system integration patterns.'],
   ],
 } as const;
+
+export const publicRoutes = [
+  '/',
+  '/about/',
+  '/programs/',
+  '/technology/',
+  '/projects/',
+  '/developers/',
+  '/security/',
+  '/open-government/',
+  '/news/',
+  '/roadmap/',
+  '/status/',
+  '/privacy/',
+  '/accessibility/',
+  '/contact/',
+] as const;
