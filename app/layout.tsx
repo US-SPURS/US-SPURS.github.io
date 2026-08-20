@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './interior.css';
 import { Footer, GovernmentBanner, Header } from '@/components/site-shell';
 import { site } from '@/content/site';
 
