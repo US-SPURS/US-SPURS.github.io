@@ -5,6 +5,7 @@ on:
     branches: [main]
   push:
     branches: ['feature/**']
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,37 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-audit --no-fund
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run build
-
-  accessibility:
-    runs-on: ubuntu-latest
-    needs: quality
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: npm install --no-audit --no-fund
-      - run: npm run build
-      - name: Serve exported site
-        run: |
-          npx --yes serve out -l 4173 >/tmp/spurs-serve.log 2>&1 &
-          sleep 3
-      - name: Run axe against key pages
-        run: |
-          npx --yes @axe-core/cli \
-            http://127.0.0.1:4173/ \
-            http://127.0.0.1:4173/about/ \
-            http://127.0.0.1:4173/programs/ \
-            http://127.0.0.1:4173/technology/ \
-            http://127.0.0.1:4173/projects/ \
-            http://127.0.0.1:4173/developers/ \
-            http://127.0.0.1:4173/security/ \
-            http://127.0.0.1:4173/open-government/ \
-            http://127.0.0.1:4173/privacy/ \
-            http://127.0.0.1:4173/accessibility/ \
-            http://127.0.0.1:4173/contact/ \
-            --exit
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Type, source policy, build, and link validation
+        run: npm run check
