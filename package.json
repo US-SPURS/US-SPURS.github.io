@@ -1,6 +1,6 @@
 {
   "name": "us-spurs-gov",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,7 +8,8 @@
     "lint": "node scripts/source-policy.mjs",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "check": "npm run typecheck && npm run lint && npm run build"
+    "check:links": "node scripts/check-links.mjs",
+    "check": "npm run typecheck && npm run lint && npm run build && npm run check:links"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -16,10 +17,12 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.62.1",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "lighthouse": "13.4.1",
     "typescript": "^5.9.0"
   },
   "engines": {
