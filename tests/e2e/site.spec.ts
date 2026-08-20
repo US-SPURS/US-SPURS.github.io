@@ -23,10 +23,34 @@ test.describe('public site', () => {
     });
   }
 
-  test('homepage exposes primary actions', async ({ page }) => {
+  test('homepage exposes primary actions and public metadata', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await expect(page.getByRole('link', { name: /explore projects/i })).toBeVisible();
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /https:\/\/spurs\.gov/);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /.+/);
+    await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
+    await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
+  });
+
+  test('homepage stays within a conservative static-site transfer budget', async ({ page }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+    const metrics = await page.evaluate(() => {
+      const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+      const totalTransfer = resources.reduce((sum, entry) => sum + (entry.transferSize || 0), 0);
+      const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+      return {
+        resourceCount: resources.length,
+        totalTransfer,
+        domContentLoaded: nav?.domContentLoadedEventEnd ?? 0,
+      };
+    });
+
+    expect(metrics.resourceCount).toBeLessThanOrEqual(35);
+    expect(metrics.totalTransfer).toBeLessThanOrEqual(1_000_000);
+    expect(metrics.domContentLoaded).toBeLessThanOrEqual(3_000);
   });
 
   test('mobile navigation can be opened and used', async ({ page, isMobile }) => {
