@@ -5,6 +5,7 @@ const ROOT = process.cwd();
 const TARGETS = ['app', 'components', 'content', 'tests'];
 const EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs']);
 const violations = [];
+let scannedFiles = 0;
 
 const rules = [
   { name: 'debugger statement', pattern: /\bdebugger\s*;/g },
@@ -16,7 +17,14 @@ const rules = [
 ];
 
 async function walk(dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return;
+    throw error;
+  }
+
   for (const entry of entries) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -24,6 +32,8 @@ async function walk(dir) {
       continue;
     }
     if (!EXTENSIONS.has(extname(entry.name))) continue;
+
+    scannedFiles += 1;
     const text = await readFile(full, 'utf8');
     for (const rule of rules) {
       rule.pattern.lastIndex = 0;
@@ -35,13 +45,11 @@ async function walk(dir) {
   }
 }
 
-for (const target of TARGETS) {
-  await walk(join(ROOT, target));
-}
+for (const target of TARGETS) await walk(join(ROOT, target));
 
 if (violations.length) {
   console.error('Source policy violations found:\n' + violations.map((v) => `- ${v}`).join('\n'));
   process.exit(1);
 }
 
-console.info(`Source policy passed across ${TARGETS.join(', ')}.`);
+console.info(`Source policy passed across ${scannedFiles} source files.`);
