@@ -28,41 +28,5 @@ jobs:
         run: |
           python3 -m http.server 4173 --directory out >/tmp/spurs-serve.log 2>&1 &
           sleep 3
-      - name: Browser and axe smoke tests
+      - name: Browser, accessibility, metadata, mobile, and performance checks
         run: npm run test:e2e
-
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-      - name: Build static export
-        run: npm run build
-      - name: Install pinned Chromium
-        run: npx --no-install playwright install --with-deps chromium
-      - name: Serve static export
-        run: |
-          python3 -m http.server 4173 --directory out >/tmp/spurs-serve.log 2>&1 &
-          sleep 3
-      - name: Audit homepage
-        run: |
-          export CHROME_PATH="$(node -p "require('playwright').chromium.executablePath()")"
-          npx --no-install lighthouse http://127.0.0.1:4173/ \
-            --chrome-flags='--headless --no-sandbox' \
-            --only-categories=performance,accessibility,best-practices,seo \
-            --output=json --output-path=/tmp/lighthouse.json
-          node - <<'NODE'
-          const r=require('/tmp/lighthouse.json').categories;
-          const minimum={performance:.80,accessibility:.95,'best-practices':.90,seo:.90};
-          let failed=false;
-          for (const [key,min] of Object.entries(minimum)) {
-            const score=r[key].score;
-            console.log(`${key}: ${Math.round(score*100)} (minimum ${Math.round(min*100)})`);
-            if (score < min) failed=true;
-          }
-          if (failed) process.exit(1);
-          NODE
