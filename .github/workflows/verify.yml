@@ -1,0 +1,32 @@
+name: Experience verification
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: ['feature/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build static export
+        run: npm run build
+      - name: Install pinned Chromium
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Serve static export
+        run: |
+          python3 -m http.server 4173 --directory out >/tmp/spurs-serve.log 2>&1 &
+          sleep 3
+      - name: Browser, accessibility, metadata, mobile, and performance checks
+        run: npm run test:e2e

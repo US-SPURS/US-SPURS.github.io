@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "generatedFor": "spurs.gov",
+  "organization": "US-SPURS",
+  "projects": [
+    {"name":"ATLANTIS-AI","repository":"https://github.com/US-SPURS/ATLANTIS-AI","visibility":"public","lifecycle":"development","capabilities":["AI","orchestration","agents"]},
+    {"name":"SWARM","repository":"https://github.com/US-SPURS/SWARM","visibility":"public","lifecycle":"development","capabilities":["agents","distributed-execution"]},
+    {"name":"HITMAN","repository":"https://github.com/US-SPURS/HITMAN","visibility":"public","lifecycle":"development","capabilities":["task-execution","automation"]},
+    {"name":"HELIOS","repository":"https://github.com/US-SPURS/HELIOS","visibility":"public","lifecycle":"development","capabilities":["platform"]},
+    {"name":"developer-hub","repository":"https://github.com/US-SPURS/developer-hub","visibility":"public","lifecycle":"active","capabilities":["documentation","developer-experience"]},
+    {"name":"DOCS","repository":"https://github.com/US-SPURS/DOCS","visibility":"public","lifecycle":"active","capabilities":["documentation","knowledge"]},
+    {"name":"github-mcp-server","repository":"https://github.com/US-SPURS/github-mcp-server","visibility":"public","lifecycle":"active","capabilities":["github","mcp","automation"]},
+    {"name":"dns","repository":"https://github.com/US-SPURS/dns","visibility":"public","lifecycle":"active","capabilities":["dns","infrastructure"]},
+    {"name":"idmanagement","repository":"https://github.com/US-SPURS/idmanagement","visibility":"public","lifecycle":"active","capabilities":["identity","security"]}
+  ]
+}
