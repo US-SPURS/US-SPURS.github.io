@@ -68,7 +68,13 @@ jobs:
   setup:
     executor: node-executor
     steps:
-      - checkout
+      - run:
+          name: Checkout code via HTTPS
+          command: |
+            git clone --filter=blob:none \
+              https://github.com/US-SPURS/US-SPURS.github.io.git \
+              .
+            git checkout "$CIRCLE_SHA1"
       - install_node_modules
       - persist_to_workspace:
           root: ~/us-spurs-site
